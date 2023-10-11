@@ -15,6 +15,7 @@ import java.time.LocalDate;
 public class Experience {
     @Id
     @Column(name = "exp_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Temporal(TemporalType.DATE)
     @Column(name = "to_date")

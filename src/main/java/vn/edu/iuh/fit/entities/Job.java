@@ -16,6 +16,7 @@ import java.util.UUID;
 public class Job {
     @Id
     @Column(name = "job_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "job_name", unique = true)
     private String name;

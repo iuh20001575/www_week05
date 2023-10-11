@@ -23,6 +23,7 @@ public class Skill {
     private String skillDescription;
     @Id
     @Column(name = "skill_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToMany(mappedBy = "skill")
     private List<JobSkill> jobSkills;

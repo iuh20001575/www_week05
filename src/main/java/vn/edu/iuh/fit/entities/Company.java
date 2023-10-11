@@ -16,6 +16,7 @@ import java.util.UUID;
 public class Company {
     @Id
     @Column(name = "comp_id", columnDefinition = "bigint(20)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(columnDefinition = "varchar(255)", name = "comp_name")
     private String name;

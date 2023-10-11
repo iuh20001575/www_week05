@@ -19,6 +19,7 @@ public class Candidate {
     private String phone;
     @Id
     @Column(name = "can_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(columnDefinition = "date")
     private LocalDate dob;
