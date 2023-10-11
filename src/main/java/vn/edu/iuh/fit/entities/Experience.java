@@ -25,7 +25,7 @@ public class Experience {
     @Temporal(TemporalType.DATE)
     @Column(name = "from_date")
     private LocalDate fromDate;
-    @Column(length = 120)
+    @Column(length = 120, name = "company")
     private String companyName;
     @Column(length = 100)
     private String role;

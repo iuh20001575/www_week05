@@ -20,7 +20,7 @@ public class JobSkill {
     @JoinColumn(name = "job_id")
     private Job job;
     @Column(name = "more_infos", length = 1000)
-    private String moreInfos;
+    private String moreInfo;
     @Id
     @ManyToOne
     @JoinColumn(name = "skill_id")

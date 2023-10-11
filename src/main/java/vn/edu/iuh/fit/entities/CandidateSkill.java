@@ -25,6 +25,6 @@ public class CandidateSkill {
     @ManyToOne
     @JoinColumn(name = "can_id")
     private Candidate candidate;
-    @Column(name = "more_infors", length = 1000)
-    private String moreInfos;
+    @Column(name = "more_infos", length = 1000)
+    private String moreInfo;
 }

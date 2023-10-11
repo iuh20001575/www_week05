@@ -6,5 +6,5 @@ import java.util.Arrays;
 
 @Getter
 public enum SkillLevel {
-    MASTER, BEGINNER, ADVANCED, PROFESSIONAL, IMTERMEDIATE;
+    MASTER, BEGINER, ADVANCED, PROFESSIONAL, IMTERMEDIATE;
 }

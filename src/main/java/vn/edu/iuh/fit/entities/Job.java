@@ -20,7 +20,7 @@ public class Job {
     @Column(name = "job_name", unique = true)
     private String name;
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "company")
     private Company company;
     @OneToMany(mappedBy = "job")
     private List<JobSkill> jobSkills;
