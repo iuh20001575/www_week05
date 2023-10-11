@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "candidate")
@@ -31,7 +30,9 @@ public class Candidate {
     @JoinColumn(referencedColumnName = "add_id", name = "address")
     private Address address;
     @OneToMany(mappedBy = "candidate")
+    @ToString.Exclude
     private List<CandidateSkill> candidateSkills;
     @OneToMany(mappedBy = "candidate")
+    @ToString.Exclude
     private List<Experience> experiences;
 }

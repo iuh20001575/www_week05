@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "job")
@@ -24,6 +23,7 @@ public class Job {
     @JoinColumn(name = "company")
     private Company company;
     @OneToMany(mappedBy = "job")
+    @ToString.Exclude
     private List<JobSkill> jobSkills;
     @Column(name = "job_desc", length = 2000)
     private String description;
