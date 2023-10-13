@@ -30,6 +30,10 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Company company;
 
+    public Address(long id) {
+        this.id = id;
+    }
+
     public Address(String city, CountryCode country, String zipcode, String street, String number) {
         this.city = city;
         this.country = country;

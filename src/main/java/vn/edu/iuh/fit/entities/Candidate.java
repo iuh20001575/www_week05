@@ -14,20 +14,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Candidate {
-    @Column(columnDefinition = "varchar(15)")
+    @Column(columnDefinition = "varchar(15)", nullable = false, unique = true)
     private String phone;
     @Id
-    @Column(name = "can_id")
+    @Column(name = "can_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(columnDefinition = "date")
+    @Column(columnDefinition = "date", nullable = false)
     private LocalDate dob;
-    @Column(columnDefinition = "varchar(255)")
+    @Column(columnDefinition = "varchar(255)", nullable = false, unique = true)
     private String email;
-    @Column(columnDefinition = "varchar(255)", name = "full_name")
+    @Column(columnDefinition = "varchar(255)", name = "full_name", nullable = false)
     private String fullName;
     @OneToOne
-    @JoinColumn(referencedColumnName = "add_id", name = "address")
+    @JoinColumn(referencedColumnName = "add_id", name = "address", nullable = false)
     private Address address;
     @OneToMany(mappedBy = "candidate")
     @ToString.Exclude
@@ -35,4 +35,16 @@ public class Candidate {
     @OneToMany(mappedBy = "candidate")
     @ToString.Exclude
     private List<Experience> experiences;
+
+    public Candidate(long id) {
+        this.id = id;
+    }
+
+    public Candidate(String phone, LocalDate dob, String email, String fullName, Address address) {
+        this.phone = phone;
+        this.dob = dob;
+        this.email = email;
+        this.fullName = fullName;
+        this.address = address;
+    }
 }

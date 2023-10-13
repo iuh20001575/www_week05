@@ -13,7 +13,7 @@ import vn.edu.iuh.fit.enums.SkillLevel;
 @ToString
 @IdClass(JobSkillID.class)
 public class JobSkill {
-    @Column(name = "skill_level")
+    @Column(name = "skill_level", nullable = false)
     private SkillLevel skillLevel;
     @Id
     @ManyToOne

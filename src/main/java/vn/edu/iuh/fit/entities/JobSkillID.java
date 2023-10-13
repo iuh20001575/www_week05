@@ -1,9 +1,6 @@
 package vn.edu.iuh.fit.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -11,8 +8,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 public class JobSkillID implements Serializable {
-
-    private Job job;
-    private Skill skill;
+    private long job;
+    private long skill;
 }

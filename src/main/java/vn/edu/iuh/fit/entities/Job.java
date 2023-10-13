@@ -14,10 +14,10 @@ import java.util.List;
 @ToString
 public class Job {
     @Id
-    @Column(name = "job_id", nullable = false)
+    @Column(name = "job_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "job_name", unique = true)
+    @Column(name = "job_name", nullable = false)
     private String name;
     @ManyToOne
     @JoinColumn(name = "company")
@@ -25,7 +25,16 @@ public class Job {
     @OneToMany(mappedBy = "job")
     @ToString.Exclude
     private List<JobSkill> jobSkills;
-    @Column(name = "job_desc", length = 2000)
+    @Column(name = "job_desc", length = 2000, nullable = false)
     private String description;
 
+    public Job(long id) {
+        this.id = id;
+    }
+
+    public Job(String name, Company company, String description) {
+        this.name = name;
+        this.company = company;
+        this.description = description;
+    }
 }

@@ -14,8 +14,8 @@ import java.io.Serializable;
 @Setter
 @ToString
 @IdClass(CandidateSkillID.class)
-public class CandidateSkill {
-    @Column(name = "skill_level")
+public class CandidateSkill implements Serializable {
+    @Column(name = "skill_level", nullable = false)
     private SkillLevel skillLevel;
     @Id
     @ManyToOne

@@ -67,7 +67,7 @@ public class AddressServices {
     }
 
     private boolean exists(long id) {
-        return addressRepository.findById(id).isPresent();
+        return addressRepository.existsById(id);
     }
 
     private boolean exists(Address address) {

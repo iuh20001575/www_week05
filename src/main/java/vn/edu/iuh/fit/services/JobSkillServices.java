@@ -74,6 +74,6 @@ public class JobSkillServices {
     }
 
     private JobSkillID getID(JobSkill jobSkill) {
-        return new JobSkillID(jobSkill.getJob(), jobSkill.getSkill());
+        return new JobSkillID(jobSkill.getJob().getId(), jobSkill.getSkill().getId());
     }
 }

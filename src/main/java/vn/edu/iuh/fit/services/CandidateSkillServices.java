@@ -76,6 +76,6 @@ public class CandidateSkillServices {
     }
 
     private CandidateSkillID getID(CandidateSkill candidateSkill) {
-        return new CandidateSkillID(candidateSkill.getSkill(), candidateSkill.getCandidate());
+        return new CandidateSkillID(candidateSkill.getSkill().getId(), candidateSkill.getCandidate().getId());
     }
 }

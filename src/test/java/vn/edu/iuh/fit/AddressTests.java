@@ -1,6 +1,5 @@
 package vn.edu.iuh.fit;
 
-import com.neovisionaries.i18n.CountryCode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,6 @@ import vn.edu.iuh.fit.entities.Address;
 import vn.edu.iuh.fit.services.AddressServices;
 
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class AddressTests {
@@ -63,7 +60,7 @@ class AddressTests {
 
     @Test
     void deleteSuccess() {
-        Optional<Boolean> optional = addressServices.delete(222);
+        Optional<Boolean> optional = addressServices.delete(221);
 
         Assertions.assertTrue(optional.isPresent() && optional.get());
     }
