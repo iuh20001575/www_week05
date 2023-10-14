@@ -73,4 +73,8 @@ public class CandidateServices {
     private boolean exists(Candidate candidate) {
         return exists(candidate.getId());
     }
+
+    public Optional<Candidate> login(String email) {
+        return candidateRepository.findByEmail(email);
+    }
 }
