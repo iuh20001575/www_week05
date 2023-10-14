@@ -73,4 +73,8 @@ public class JobServices {
     private boolean exists(Job job) {
         return exists(job.getId());
     }
+
+    public List<Job> findByCompanyId(long companyId) {
+        return jobRepository.findByCompanyId(companyId);
+    }
 }

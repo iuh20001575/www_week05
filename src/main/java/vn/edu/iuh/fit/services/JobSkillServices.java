@@ -76,4 +76,8 @@ public class JobSkillServices {
     private JobSkillID getID(JobSkill jobSkill) {
         return new JobSkillID(jobSkill.getJob().getId(), jobSkill.getSkill().getId());
     }
+
+    public List<JobSkill> findByJobId(long jobId) {
+        return jobSkillRepository.findByJobId(jobId);
+    }
 }

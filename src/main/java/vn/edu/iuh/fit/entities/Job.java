@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Job {
     @Id
     @Column(name = "job_id")
@@ -36,5 +35,15 @@ public class Job {
         this.name = name;
         this.company = company;
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", company=" + company +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

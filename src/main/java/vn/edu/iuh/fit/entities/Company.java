@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Company {
     @Id
     @Column(name = "comp_id", columnDefinition = "bigint(20)")
@@ -45,5 +44,18 @@ public class Company {
         this.phone = phone;
         this.webURL = webURL;
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", about='" + about + '\'' +
+                ", address=" + address +
+                ", phone='" + phone + '\'' +
+                ", webURL='" + webURL + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

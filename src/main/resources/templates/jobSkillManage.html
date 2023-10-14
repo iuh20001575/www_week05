@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Manage</title>
+    <!--css-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!--js-->
+    <script th:src="@{/js/jQuery.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <main>
+        <header>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container">
+                    <a class="navbar-brand" th:href="@{/}">Job seeking</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Company
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" th:href="@{/jobs/manage}">Manager job</a></li>
+                                    <li><a class="dropdown-item" href="#">Add job</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section class="container d-flex flex-column gap-3">
+            <h1 class="text-center">Skill Manage</h1>
+
+            <div class="row align-items-center row-gap-3">
+                <label class="form-label col col-4">Name: </label>
+                <div class="col col-8">
+                    <input readonly disabled type="text" class="form-control" th:value="${job.getName()}">
+                </div>
+
+                <label class="form-label col col-4">Description: </label>
+                <div class="col col-8">
+                    <input readonly disabled type="text" class="form-control" th:value="${job.getDescription()}">
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Skill name</th>
+                        <th scope="col">Skill description</th>
+                        <th scope="col">Skill type</th>
+                        <th scope="col">Skill level
+                        <th scope="col">Info</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="jobSkill : ${jobSkills}">
+                        <th scope="row" th:text="*{jobSkill.getSkill().getId()}" />
+                        <td th:text="*{jobSkill.getSkill().getSkillName()}" />
+                        <td th:text="*{jobSkill.getSkill().getSkillDescription()}" />
+                        <td th:text="*{jobSkill.getSkill().getType()}" />
+                        <td th:text="*{jobSkill.getSkillLevel()}" />
+                        <td th:text="*{jobSkill.getMoreInfo()}" />
+                        <td>
+                            <a th:href="*{job.getId()}">Detail</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

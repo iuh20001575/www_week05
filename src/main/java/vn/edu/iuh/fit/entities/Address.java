@@ -10,7 +10,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Address {
     @Column(columnDefinition = "varchar(50)")
     private String city;
@@ -40,5 +39,17 @@ public class Address {
         this.zipcode = zipcode;
         Street = street;
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", country=" + country +
+                ", id=" + id +
+                ", zipcode='" + zipcode + '\'' +
+                ", Street='" + Street + '\'' +
+                ", number='" + number + '\'' +
+                '}';
     }
 }
