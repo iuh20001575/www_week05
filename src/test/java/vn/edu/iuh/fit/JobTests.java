@@ -1,12 +1,12 @@
 package vn.edu.iuh.fit;
 
-import jakarta.annotation.PostConstruct;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import vn.edu.iuh.fit.entities.Company;
 import vn.edu.iuh.fit.entities.Job;
+import vn.edu.iuh.fit.repositories.JobRepository;
 import vn.edu.iuh.fit.services.JobServices;
 
 import java.util.List;
@@ -15,13 +15,15 @@ import java.util.Optional;
 @SpringBootTest
 class JobTests {
     private final JobServices jobServices;
+    @Autowired
+    private JobRepository jobRepository;
 
     @Autowired
     public JobTests(JobServices jobServices) {
         this.jobServices = jobServices;
     }
 
-    @PostConstruct
+    //    @PostConstruct
     void save() {
         Job job;
         Company company;
@@ -91,5 +93,12 @@ class JobTests {
         Optional<Boolean> optional = jobServices.delete(999);
 
         Assertions.assertTrue(optional.isEmpty() || !optional.get());
+    }
+
+    @Test
+    void suggestJobsByCandidate() {
+        List<Job> jobs = jobRepository.suggestJobsByCandidate(10);
+
+        Assertions.assertFalse(jobs.isEmpty());
     }
 }

@@ -21,7 +21,7 @@ public class Job {
     @ManyToOne
     @JoinColumn(name = "company")
     private Company company;
-    @OneToMany(mappedBy = "job")
+    @OneToMany(mappedBy = "job", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @ToString.Exclude
     private List<JobSkill> jobSkills;
     @Column(name = "job_desc", length = 2000, nullable = false)

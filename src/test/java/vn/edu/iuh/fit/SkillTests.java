@@ -1,12 +1,13 @@
 package vn.edu.iuh.fit;
 
-import jakarta.annotation.PostConstruct;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import vn.edu.iuh.fit.entities.Skill;
 import vn.edu.iuh.fit.enums.SkillType;
+import vn.edu.iuh.fit.repositories.SkillRepository;
 import vn.edu.iuh.fit.services.SkillServices;
 
 import java.util.List;
@@ -15,13 +16,15 @@ import java.util.Optional;
 @SpringBootTest
 class SkillTests {
     private final SkillServices skillServices;
+    @Autowired
+    private SkillRepository skillRepository;
 
     @Autowired
     public SkillTests(SkillServices skillServices) {
         this.skillServices = skillServices;
     }
 
-    @PostConstruct
+//    @PostConstruct
     void save() {
         Skill skill;
         for (int i = 1; i <= 101; ++i) {
@@ -86,5 +89,15 @@ class SkillTests {
         Optional<Boolean> optional = skillServices.delete(999);
 
         Assertions.assertTrue(optional.isEmpty() || !optional.get());
+    }
+
+    @Test
+    void suggestForCandidate() {
+        PageRequest pageRequest = PageRequest.of(3, 10);
+        List<Skill> skills = skillRepository.suggestForCandidate(10, pageRequest);
+
+        skills.forEach(System.out::println);
+
+        Assertions.assertFalse(skills::isEmpty);
     }
 }
