@@ -2,6 +2,9 @@ package vn.edu.iuh.fit.backend.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import vn.edu.iuh.fit.backend.entities.Candidate;
 import vn.edu.iuh.fit.backend.repositories.CandidateRepository;
@@ -72,5 +75,12 @@ public class CandidateServices {
 
     private boolean exists(Candidate candidate) {
         return exists(candidate.getId());
+    }
+
+    public Page<Candidate> findAll(int pageNo, int pageSize, String sortBy, String sortDirection) {
+        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+        PageRequest pageRequest = PageRequest.of(pageNo, pageSize, sort);
+
+        return candidateRepository.findAll(pageRequest);
     }
 }

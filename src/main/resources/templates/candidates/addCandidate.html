@@ -11,6 +11,62 @@
     <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-    <main th:include="components/header"></main>
+    <main>
+        <header th:include="components/header"></header>
+        <section class="container mt-3">
+            <h1 class="text-center">Add candidate</h1>
+            <form action="/candidates/add" method="post" th:object="${candidate}" class="mt-3">
+                <div class="mb-3 row">
+                    <label for="fullName" class="col-sm-2 col-form-label">Full name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="fullName" th:field="${candidate.fullName}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                    <div class="col-sm-10">
+                        <input type="tel" class="form-control" id="phone" th:field="${candidate.phone}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" th:field="${candidate.email}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="dob" class="col-sm-2 col-form-label">Birthday</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="dob" th:field="${candidate.dob}">
+                    </div>
+                </div>
+                <div class="mb-3 row gutter-0">
+                    <label class="col-sm-2 col-form-label">Address</label>
+                    <label class="col-sm-1">
+                        <input type="text" class="form-control" placeholder="Number" th:field="${address.number}">
+                    </label>
+                    <label class="col-sm-1">
+                        <input type="text" class="form-control" placeholder="Street" th:field="${address.street}">
+                    </label>
+                    <label class="col-sm-1">
+                        <input type="text" class="form-control" placeholder="Zipcode" th:field="${address.zipcode}">
+                    </label>
+                    <label class="col-sm-3">
+                        <input type="text" class="form-control" placeholder="City" th:field="${address.city}">
+                    </label>
+                    <label class="col-sm-4">
+                        <select class="form-select" aria-label="Default select example" th:field="${address.country}">
+                            <option th:each="country : ${countryCodes}"
+                                    th:value="${country}"
+                                    th:text="${country.getName()}" />
+                        </select>
+                    </label>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Add candidate</button>
+                </div>
+            </form>
+        </section>
+    </main>
 </body>
 </html>
