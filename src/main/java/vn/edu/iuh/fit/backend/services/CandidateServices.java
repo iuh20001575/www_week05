@@ -79,7 +79,7 @@ public class CandidateServices {
 
     public Page<Candidate> findAll(int pageNo, int pageSize, String sortBy, String sortDirection) {
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
-        PageRequest pageRequest = PageRequest.of(pageNo, pageSize, sort);
+        PageRequest pageRequest = PageRequest.of(pageNo - 1, pageSize, sort);
 
         return candidateRepository.findAll(pageRequest);
     }

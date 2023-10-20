@@ -35,7 +35,7 @@ public class JobController {
         model.addAttribute("companies", companies);
         model.addAttribute("jobs", jobs);
 
-        return "jobManage";
+        return "jobs/jobManage";
     }
 
     @GetMapping("/{job-id}")
@@ -50,6 +50,6 @@ public class JobController {
         model.addAttribute("jobSkills", jobSkills);
         model.addAttribute("job", jobOptional.get());
 
-        return "jobSkillManage";
+        return "jobSkills/jobSkillManage";
     }
 }

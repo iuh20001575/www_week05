@@ -12,10 +12,55 @@
 </head>
 <body>
     <main>
-        <header th:include="components/header"></header>
+        <header th:insert="~{components/header.html}"></header>
 
-        <section>
+        <section class="container">
+            <h1 class="text-center">Candidate Manage</h1>
 
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Date of birth</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="candidate : ${candidates}">
+                        <th scope="row" th:text="*{candidate.getId()}"></th>
+                        <td th:text="*{candidate.getFullName()}"></td>
+                        <td th:text="*{candidate.getEmail()}"></td>
+                        <td th:text="*{candidate.getPhone()}"></td>
+                        <td th:text="*{candidate.getAddress().getNumber()}"></td>
+                        <td th:text="*{candidate.getDob()}"></td>
+                        <td>
+                            <a th:href="*{candidate.getId()}">Detail</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li th:class="page-item + ${' '} + (${candidates.number == 0} ? disabled)">
+                        <a class="page-link"
+                            th:href="@{/candidates(size=${candidates.size}, page=${candidates.number})}">Previous</a>
+                    </li>
+                    <li th:each="page : ${pages}"
+                        th:class="page-item + ${' '} + (${page == candidates.number + 1} ? active)">
+                        <a class="page-link" th:href="@{/candidates(size=${candidates.size}, page=${page})}"
+                            th:text="${page}"></a>
+                    </li>
+                    <li th:class="page-item + ${' '} + (${candidates.number == pages.size} ? disabled)">
+                        <a th:class="page-link"
+                            th:href="@{/candidates(size=${candidates.size}, page=${candidates.number + 2})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </section>
     </main>
 </body>

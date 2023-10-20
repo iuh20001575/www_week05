@@ -12,7 +12,7 @@
 </head>
 <body>
     <main>
-        <header th:include="components/header"></header>
+        <header th:insert="~{components/header.html}"></header>
         <section class="container mt-3">
             <h1 class="text-center">Add candidate</h1>
             <form action="/candidates/add" method="post" th:object="${candidate}" class="mt-3">

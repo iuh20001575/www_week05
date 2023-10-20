@@ -10,7 +10,8 @@
         <script th:src="@{/js/bootstrap.min.js}"></script>
     </head>
     <body>
-        <main th:include="components/header">
+        <main>
+            <header th:insert="~{components/header.html}"></header>
         </main>
     </body>
 </html>
