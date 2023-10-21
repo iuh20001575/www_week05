@@ -15,17 +15,17 @@
         <header th:insert="~{components/header.html}"></header>
 
         <section class="container d-flex flex-column gap-3">
-            <h1 class="text-center">Skill Manage</h1>
+            <h1 class="text-center">Job Detail</h1>
 
             <div class="row align-items-center row-gap-3">
-                <label class="form-label col col-4">Name: </label>
+                <label for="name" class="form-label col col-4">Name: </label>
                 <div class="col col-8">
-                    <input readonly disabled type="text" class="form-control" th:value="${job.getName()}">
+                    <input id="name" readonly disabled type="text" class="form-control" th:value="${job.getName()}">
                 </div>
 
-                <label class="form-label col col-4">Description: </label>
+                <label for="description" class="form-label col col-4">Description: </label>
                 <div class="col col-8">
-                    <input readonly disabled type="text" class="form-control" th:value="${job.getDescription()}">
+                    <input id="description" readonly disabled type="text" class="form-control" th:value="${job.getDescription()}">
                 </div>
             </div>
 
@@ -38,7 +38,6 @@
                         <th scope="col">Skill type</th>
                         <th scope="col">Skill level
                         <th scope="col">Info</th>
-                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,9 +48,6 @@
                         <td th:text="*{jobSkill.getSkill().getType()}" />
                         <td th:text="*{jobSkill.getSkillLevel()}" />
                         <td th:text="*{jobSkill.getMoreInfo()}" />
-                        <td>
-                            <a th:href="*{job.getId()}">Detail</a>
-                        </td>
                     </tr>
                 </tbody>
             </table>

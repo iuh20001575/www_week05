@@ -2,10 +2,14 @@
 - [Home Page](#home-page)
 - [Add Candidate Page](#add-candidate-page)
 - [Add Job Page](#add-job-page)
+- ~~[Add Company Page](#add-company-page)~~
 - [Manage Candidate Page](#manage-candidate-page)
+- ~~[Manage Companies Page](#manage-companies-page)~~
 - [Manage Job Page](#manage-job-page)
 - [Suggest Candidate Page](#suggest-candidate-page)
 - [Suggest Skill Page](#suggest-skill-page)
+- [Job Detail Page](#job-detail-page)
+- ~~[Candidate Detail Page](#candidate-detail-page)~~
 
 ## Home Page
 ### Suggest Job for candidate
@@ -26,3 +30,5 @@
 ## Suggest Skill Page
 ### Suggest some skills that the candidate does not have to learn
 ![Alt text](https://thaoanhhaa1.github.io/www_images/Lab05_SuggestSkillPage.jpeg "Suggest Skill Page")
+## Job Detail Page
+![Alt text](https://thaoanhhaa1.github.io/www_images/Lab05_JobDetailPage.jpeg "Job Detail Page")
