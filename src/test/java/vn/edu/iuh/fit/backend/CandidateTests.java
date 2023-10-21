@@ -31,15 +31,15 @@ class CandidateTests {
     @PostConstruct
     void save() {
         Random rnd = new Random();
-        for (int i = 1; i < 1000; i++) {
+        for (int i = 1; i <= 1000; i++) {
             Address add = new Address("HCM", CountryCode.VN, rnd.nextInt(70000, 80000) + "", "Quang Trung",
                     rnd.nextInt(1, 1000) + "");
-            addressRepository.save(add);
+            Address saved = addressRepository.save(add);
             Candidate can = new Candidate(
                     rnd.nextLong(1111111111L, 9999999999L) + "",
                     LocalDate.of(1998, rnd.nextInt(1, 13), rnd.nextInt(1, 29)),
-                    "email_" + i + "@gmail.com", "Name #" + i
-                    , add);
+                    "email" + i + "@gmail.com", "Name #" + i
+                    , saved);
             candidateRepository.save(can);
             System.out.println("Added: " + can);
         }
@@ -65,6 +65,6 @@ class CandidateTests {
 
         System.out.println(candidates);
 
-        Assertions.assertTrue(!candidates.isEmpty());
+        Assertions.assertFalse(candidates.isEmpty());
     }
 }

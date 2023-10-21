@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.backend;
 
+import jakarta.annotation.PostConstruct;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,10 @@ class SkillTests {
         this.skillServices = skillServices;
     }
 
-//    @PostConstruct
+    @PostConstruct
     void save() {
         Skill skill;
-        for (int i = 1; i <= 101; ++i) {
+        for (int i = 1; i <= 1000; ++i) {
             skill = new Skill(SkillType.values()[(int) (Math.random() * 3)], "Skill name #" + i, "Skill description #" + i);
 
             skillServices.save(skill);

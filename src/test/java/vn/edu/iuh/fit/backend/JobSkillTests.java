@@ -32,9 +32,9 @@ public class JobSkillTests {
         SkillLevel[] skillLevels = SkillLevel.values();
         int skillLevelsSize = skillLevels.length;
 
-        for (int i = 1; i <= 99; ++i) {
-            job = new Job(i * 5);
-            skill = new Skill(i);
+        for (int i = 1; i <= 5000; ++i) {
+            job = new Job(i);
+            skill = new Skill(i % 1000 == 0 ? 1000 : i % 1000);
             jobSkill = new JobSkill(skillLevels[(int) (Math.random() * skillLevelsSize)], job, "More info #" + i, skill);
 
             jobSkillServices.save(jobSkill);
@@ -43,7 +43,7 @@ public class JobSkillTests {
 
     @Test
     void findSuccessById() {
-        JobSkillID jobSkillID = new JobSkillID(250, 50);
+        JobSkillID jobSkillID = new JobSkillID(1000, 1000);
         Optional<JobSkill> jobOptional = jobSkillServices.findById(jobSkillID);
 
         Assertions.assertTrue(jobOptional.isPresent());

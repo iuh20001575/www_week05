@@ -30,12 +30,15 @@ public class CandidateSkillTests {
         SkillLevel[] skillLevels = SkillLevel.values();
         int skillLevelsSize = skillLevels.length;
 
-        for (int i = 4; i <= 101; ++i) {
+        for (int i = 1; i <= 500; ++i) {
             candidate = new Candidate(i);
-            skill = new Skill(i);
-            candidateSkill = new CandidateSkill(skillLevels[(int) (Math.random() * skillLevelsSize)], skill, candidate, "More info #" + i);
 
-            candidateSkillServices.save(candidateSkill);
+            for (int j = 0; j <= 5; j++) {
+                skill = new Skill(i + j);
+                candidateSkill = new CandidateSkill(skillLevels[(int) (Math.random() * skillLevelsSize)], skill, candidate, "More info #" + (i+j));
+                candidateSkillServices.save(candidateSkill);
+            }
+
         }
     }
 

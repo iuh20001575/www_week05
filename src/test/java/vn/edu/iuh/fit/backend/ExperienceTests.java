@@ -21,11 +21,14 @@ class ExperienceTests {
         Candidate candidate;
         Experience experience;
 
-        for (int i = 4; i <= 101; ++i) {
+        for (int i = 1; i <= 500; ++i) {
             candidate = new Candidate(i);
-            experience = new Experience(LocalDate.of(2022, 3, 20), candidate, LocalDate.now(), "Company name #" + i, "Role #" + i, "Word description #" + i);
 
-            experienceServices.save(experience);
+            for (int j = 0; j <= 5; j++) {
+                experience = new Experience(LocalDate.of(2022, 3, 20), candidate, LocalDate.now(), "Company name #" + (i + j), "Role #" + (i + j), "Word description #" + (i + j));
+
+                experienceServices.save(experience);
+            }
         }
     }
 

@@ -45,7 +45,7 @@
             </table>
 
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
+                <ul class="pagination justify-content-center flex-wrap">
                     <li th:class="page-item + ${' '} + (${candidates.number == 0} ? disabled)">
                         <a class="page-link"
                             th:href="@{/candidates(size=${candidates.size}, page=${candidates.number})}">Previous</a>
@@ -55,7 +55,7 @@
                         <a class="page-link" th:href="@{/candidates(size=${candidates.size}, page=${page})}"
                             th:text="${page}"></a>
                     </li>
-                    <li th:class="page-item + ${' '} + (${candidates.number == pages.size} ? disabled)">
+                    <li th:class="page-item + ${' '} + (${candidates.number+1 == pages.size} ? disabled)">
                         <a th:class="page-link"
                             th:href="@{/candidates(size=${candidates.size}, page=${candidates.number + 2})}">Next</a>
                     </li>
