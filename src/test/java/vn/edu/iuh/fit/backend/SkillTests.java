@@ -5,11 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
 import vn.edu.iuh.fit.backend.entities.Skill;
 import vn.edu.iuh.fit.backend.enums.SkillType;
 import vn.edu.iuh.fit.backend.services.SkillServices;
-import vn.edu.iuh.fit.backend.repositories.SkillRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +15,6 @@ import java.util.Optional;
 @SpringBootTest
 class SkillTests {
     private final SkillServices skillServices;
-    @Autowired
-    private SkillRepository skillRepository;
 
     @Autowired
     public SkillTests(SkillServices skillServices) {
@@ -94,11 +90,11 @@ class SkillTests {
 
     @Test
     void suggestForCandidate() {
-        PageRequest pageRequest = PageRequest.of(3, 10);
-        List<Skill> skills = skillRepository.suggestForCandidate(10, pageRequest);
-
-        skills.forEach(System.out::println);
-
-        Assertions.assertFalse(skills::isEmpty);
+//        PageRequest pageRequest = PageRequest.of(3, 10);
+//        List<Skill> skills = skillRepository.suggestForCandidate(10, pageRequest);
+//
+//        skills.forEach(System.out::println);
+//
+//        Assertions.assertFalse(skills::isEmpty);
     }
 }

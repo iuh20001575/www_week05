@@ -5,16 +5,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.iuh.fit.backend.entities.Address;
 import vn.edu.iuh.fit.backend.entities.Candidate;
+import vn.edu.iuh.fit.backend.entities.Skill;
 import vn.edu.iuh.fit.backend.repositories.AddressRepository;
 import vn.edu.iuh.fit.backend.repositories.CandidateRepository;
+import vn.edu.iuh.fit.backend.repositories.SkillRepository;
 import vn.edu.iuh.fit.backend.services.CandidateServices;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,6 +35,8 @@ public class CandidateController {
 
     @Autowired
     private CandidateServices candidateServices;
+    @Autowired
+    private SkillRepository skillRepository;
 
     @GetMapping("/add")
     public String addController(Model model) {
@@ -77,5 +84,24 @@ public class CandidateController {
         model.addAttribute("countryCodes", CountryCode.values());
 
         return "/candidates/addCandidate";
+    }
+
+    @GetMapping("/suggest-skill")
+    public String home(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size, @RequestParam("candidate-id") Optional<Long> candidateId, Model model) {
+        int sizeI = size.orElse(10);
+        List<Candidate> candidates = candidateRepository.findAll();
+
+        if (candidateId.isPresent()) {
+            PageRequest pageRequest = PageRequest.of(page.orElse(1) - 1, sizeI, Sort.by("id"));
+
+            Page<Skill> skills = skillRepository.suggestForCandidate(candidateId.get(), pageRequest);
+
+            model.addAttribute("skills", skills);
+            model.addAttribute("candidateId", candidateId.get());
+            model.addAttribute("pages", IntStream.rangeClosed(1, skills.getTotalPages()).boxed().collect(Collectors.toList()));
+        }
+        model.addAttribute("candidates", candidates);
+
+        return "candidates/suggestSkill";
     }
 }

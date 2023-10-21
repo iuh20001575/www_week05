@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Suggest skill</title>
+    <!--css-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!--js-->
+    <script th:src="@{/js/jQuery.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<main>
+    <header th:insert="~{components/header.html}"></header>
+
+    <section class="container">
+        <h1 class="text-center">Suggest Skill</h1>
+
+        <form action="/candidates/suggest-skill" method="get" class="d-flex gap-3 align-items-center">
+            <div class="">
+                <label for="candidate-id" class="form-label mb-0">Candidate</label>
+            </div>
+            <select name="candidate-id" id="candidate-id" class="form-select" aria-label="Default select example">
+                <option th:each="candidate : ${candidates}" th:value="${candidate.getId()}" th:text="${candidate.getFullName()}" th:selected="${candidate.getId() == candidateId} ? selected" />
+            </select>
+            <button type="submit" class="btn btn-primary text-nowrap">Get skills</button>
+        </form>
+
+        <div th:if="${skills != null}">
+            <div th:if="${!skills.isEmpty()}">
+                <table class="table mt-3">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Skill name</th>
+                        <th scope="col">Skill description</th>
+                        <th scope="col">Skill type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="skill : ${skills}">
+                        <th scope="row" th:text="*{skill.getId()}" />
+                        <td th:text="*{skill.getSkillName()}" />
+                        <td th:text="*{skill.getSkillDescription()}" />
+                        <td th:text="*{skill.getType()}" />
+                    </tr>
+                    </tbody>
+                </table>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center flex-wrap">
+                        <li th:class="page-item + ${' '} + (${skills.number == 0} ? disabled)">
+                            <a class="page-link"
+                               th:href="@{/candidates/suggest-skill(size=${skills.size}, page=${skills.number}, candidate-id=${candidateId})}">Previous</a>
+                        </li>
+                        <li th:each="page : ${pages}"
+                            th:class="page-item + ${' '} + (${page == skills.number + 1} ? active)">
+                            <a class="page-link" th:href="@{/candidates/suggest-skill(size=${skills.size}, page=${page}, candidate-id=${candidateId})}"
+                               th:text="${page}"></a>
+                        </li>
+                        <li th:class="page-item + ${' '} + (${skills.number+1 == pages.size} ? disabled)">
+                            <a th:class="page-link"
+                               th:href="@{/candidates/suggest-skill(size=${skills.size}, page=${skills.number + 2}, candidate-id=${candidateId})}">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div th:unless="${!skills.isEmpty()}" class="text-center mt-3">Candidate has learned all skills</div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
