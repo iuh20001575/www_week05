@@ -3,6 +3,7 @@ package vn.edu.iuh.fit.backend.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Job {
+public class Job implements Serializable {
     @Id
     @Column(name = "job_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

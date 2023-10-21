@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.backend;
 
+import jakarta.annotation.PostConstruct;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +24,15 @@ class JobTests {
         this.jobServices = jobServices;
     }
 
-    //    @PostConstruct
+        @PostConstruct
     void save() {
         Job job;
         Company company;
-        for (int i = 1; i <= 100; ++i) {
+        for (int i = 1001; i <= 2000; ++i) {
             company = new Company(i);
 
             for (int j = 1; j <= 5; ++j) {
-                job = new Job("Name #" + (i + j), company, "Description #" + (i + j));
+                job = new Job("Name #" + i + " #" + j, company, "Description #" + i + " #" + j);
                 jobServices.save(job);
             }
 

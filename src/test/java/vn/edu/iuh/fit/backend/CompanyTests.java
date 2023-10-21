@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.backend;
 
+import com.neovisionaries.i18n.CountryCode;
 import jakarta.annotation.PostConstruct;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,14 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import vn.edu.iuh.fit.backend.entities.Address;
 import vn.edu.iuh.fit.backend.entities.Company;
+import vn.edu.iuh.fit.backend.repositories.AddressRepository;
 import vn.edu.iuh.fit.backend.services.CompanyServices;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @SpringBootTest
 class CompanyTests {
     private final CompanyServices companyServices;
+    @Autowired
+    private AddressRepository addressRepository;
 
     @Autowired
     public CompanyTests(CompanyServices companyServices) {
@@ -23,11 +28,14 @@ class CompanyTests {
 
     @PostConstruct
     void save() {
-        Address address;
+        Random rnd =new Random();
         Company company;
-        for (int i = 1; i <= 101; ++i) {
-            address = new Address(i);
-            company = new Company("Name #" + i, "About #" + i, address, "Phone  #" + i, "URL #" + i, "Email #" + 1);
+        for (int i = 1; i <= 1000; ++i) {
+            Address add = new Address("HCM", CountryCode.VN,
+                    rnd.nextInt(70000,80000)+"","Quang Trung", rnd.nextInt(1,1000)+"" );
+            addressRepository.save(add);
+
+            company = new Company("Name #" + i, "About #" + i, add, "Phone  #" + i, "URL #" + i, "Email #" + 1);
 
             companyServices.save(company);
         }

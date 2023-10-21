@@ -17,10 +17,9 @@
         <section class="container">
             <h1 class="text-center">Job Manage</h1>
 
-            <form action="/jobs/manage" method="get" class="d-flex gap-3">
+            <form action="/jobs" method="get" class="d-flex gap-3">
                 <select name="company-id" class="form-select" aria-label="Default select example">
-                    <option selected>Select company</option>
-                    <option th:each="company : ${companies}" th:value="*{company.getId()}" th:text="*{company.getName()}" />
+                    <option th:selected="${company.getId() == comId} ? selected" th:each="company : ${companies}" th:value="*{company.getId()}" th:text="*{company.getName()}" />
                 </select>
                 <button type="submit" class="btn btn-primary text-nowrap">Get jobs</button>
             </form>
@@ -40,7 +39,7 @@
                         <td th:text="*{job.getName()}" />
                         <td th:text="*{job.getDescription()}" />
                         <td>
-                            <a th:href="*{job.getId()}">Detail</a>
+                            <a th:href="@{/jobs/{param}(param=${job.getId()})}">Detail</a>
                         </td>
                     </tr>
                 </tbody>

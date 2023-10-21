@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Job</title>
+    <!--css-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!--js-->
+    <script th:src="@{/js/jQuery.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<main>
+    <header th:insert="~{components/header.html}"></header>
+
+    <section class="container">
+        <h1 class="text-center">Add Job</h1>
+
+        <form action="/jobs/add" method="post" class="d-flex gap-3 flex-wrap">
+            <div class="mb-12 row col-sm-12">
+                <label for="company-id" class="col-sm-4 col-form-label">Company name</label>
+                <select th:field="${company.id}" id="company-id" name="company-id" class="form-select col-sm-12">
+                    <option th:each="companyItem : ${companies}" th:value="${companyItem.getId()}" th:text="${companyItem.getName()}" />
+                </select>
+            </div>
+            <div class="mb-12 row col-sm-12">
+                <label for="name" class="col-sm-4 col-form-label">Job name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name" th:field="${job.name}">
+                </div>
+            </div>
+            <div class="mb-12 row col-sm-12">
+                <label for="description" class="col-sm-4 col-form-label">Job description</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="description" th:field="${job.description}">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary text-nowrap">Add job</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>
